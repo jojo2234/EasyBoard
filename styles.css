@@ -1,0 +1,44 @@
+#dcv{width:100%;height:100%;padding:0px;margin:0px;}#cv{min-width:100vw;height:100vh;padding:0px;margin:0px;background-color:#fff5e7;}
+body{overflow:hidden;margin:0px;padding:0px;}#Mcr{display:none;position:absolute;width:44px;height:44px;margin:-32px 0 0 -32px;border:1px solid #333;border-radius:50%;pointer-events:none;}
+#csi{width:4%;position:absolute;right:1.1%;top:14%;cursor:pointer;box-shadow: 1px 1px 8px 1px #33333363;border-radius:15px;min-width:44px;}#tc{position:absolute;bottom:8px;margin-left:calc(50% - 273px);}
+#tc img{cursor:pointer;position:relative;width:62px;margin-right:8px;margin-left:8px;}#rf{position:absolute;top:calc(50% - 62px);padding:8px;padding-top:4px;padding-bottom:4px;color:#333;font-weight:bold;cursor:pointer;background-color:#c0bfbf;border-radius:8px;}
+#ap{min-width:60px;background-color:#fff;min-height:140px;margin-bottom:26px;box-shadow:1px 1px 8px 1px #33333363;border-radius:15px;width:50%;display:none;}
+#trt{
+    -webkit-transform:rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    width:122px;
+    height:132px;
+    margin-left:-40px;cursor:pointer;}
+#ap #ts{width:20px;height:120px;top:-10px;margin-left:-40px;}
+#colorpicker {
+    display:inline-block;
+    cursor:default;
+    margin-left:30px;
+    z-index: 2;
+    position:fixed;
+    bottom:115px;
+}
+.clft{min-width:24px;min-height:24px;border:1px solid #7a7a7a;border-radius:14px;position:absolute;right:2.2%;top:16%;cursor:pointer;}
+#sfd{text-align:center;min-width:68%;max-width:68%;min-height:62%;background-color:#fff;position:absolute;margin-left:16%;margin-top:2%;border-radius:14px;box-shadow:1px 1px 8px 1px #33333363;}
+#pgl{min-width:22%;min-height:100%;max-width:22%;border-top-right-radius:14px;border-bottom-right-radius:14px;background-color:#fff;position:absolute;}
+#insfd{max-width:90%;max-height:220px;margin-left:5%;overflow-x:scroll;display:flex;}
+#insfd img{width:148px;height:148px;margin:2%;display:inline;cursor:pointer;}
+#clbk{text-align:center;display:block;margin-top:24px;}
+#clbk span{display:inline-block;border-radius:20px;width:40px;height:40px;margin-left:12px;margin-right:12px;cursor:pointer;border: 1px solid gray;}
+#ccb,#anctx{border:1px solid #00b761;background-color:#74dbab;cursor:pointer;padding:8px;border-radius:14px;padding-left:16px;padding-right:16px;margin-top:14px;margin-bottom:14px;}
+#ccb:hover,#anctx:hover{background-color:#00b761;}
+#anctx{border:2px solid #00b761;border-radius:0px;padding-top:1px;padding-bottom:1px;margin-left:4px;}
+.layer{margin:8px;border:1px solid gray;border-radius:14px;}
+.antcv{border-radius:14px;max-width:300px;margin:8px;}#ersly{min-width:24px;max-width:10%;}
+#ersly{min-width:34px;max-width:16%;min-width:32px;max-width:42px;bottom:1%;position:absolute;margin-left:58%;cursor:pointer;}
+#crtly{min-width:34px;max-width:16%;min-width:34px;max-width:44px;bottom:1%;position:absolute;margin-left:78%;cursor:pointer;}
+#geom{min-width:60px;background-color:#fff;min-height:140px;max-width:470px;margin-bottom:26px;box-shadow:1px 1px 8px 1px #33333363;border-radius:15px;display:none;}
+#geom img{width:42px;margin-top:12px;margin-bottom:12px;}
+#cls{width:4%;position:absolute;right:1.1%;top:84%;cursor:pointer;box-shadow: 1px 1px 8px 1px #33333363;min-width:44px;}#tc{position:absolute;bottom:8px;margin-left:calc(50% - 273px);}
+#txbx{background-color:transparent;border:2px dashed gray;height:34px;width:320px;}
+#itxtbx{display:none;position:absolute;}#pencl{padding:0px;border-radius:0px;background-color:#fff;border:1px solid gray;vertical-align:middle;margin-bottom:3px;}#pencl img{max-height:18px;}
+#sotto{padding:0px;background-color:#fbfbfbd6;border:1px dashed gray;border-top:none;}#sotto select{border-radius:0px;border-style:groove;background-color:#f7f7f7;}
+#sotto span{padding-left:2px;padding-right:2px;cursor:default;}
+#slnfnt{max-width:120px;width:120px;margin-left:3px;}#fntdec{display:inline;}#fntdec span:hover{background-color:#d3d3d3;}
+#txbxclr{display:none;padding:4px;min-width:120px;max-width:120px;min-height:80px;position:absolute;right:20px;margin-top:2px;background-color:#fbfbfbd6;border:1px solid gray;}#txbxclr span{display:inline-block;border:1px solid gray;background-color:#000;min-width:11px;min-height:11px;margin:2px;}

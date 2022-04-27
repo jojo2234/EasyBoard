@@ -1,0 +1,22 @@
+{
+  "name": "easyboard",
+  "version": "1.0.0",
+  "description": "An alternative to Microsoft Whiteboard studied for School and LIM",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/jojo2234/easyboard",
+  "keywords": [
+    "Electron",
+    "Whiteboard",
+    "Smartnotebook",
+    "OpenBoard",
+    "Alternative"
+  ],
+  "author": "LoYarpi",
+  "license": "BSD-3",
+  "devDependencies": {
+    "electron": "^18.0.3"
+  }
+}
