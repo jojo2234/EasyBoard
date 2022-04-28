@@ -61,8 +61,7 @@ var beX=0;
 document.getElementById("itxtbx").addEventListener("mouseleave",function(e){movetxt=false;e.stopPropagation();});
 document.getElementById("itxtbx").addEventListener("mouseup",function(e){movetxt=false;e.stopPropagation();});
 
-//INSERIMENTO IMMAGINI
-document.getElementById("insimg").addEventListener("click",function(){let inp=document.createElement("input");inp.type="file";inp.onchange=e=>{alert("Switch to Pro to unlock this feature!");/*let img=new Image();img.src=e.target.files[0];ctx.drawImage(img,0,0,220,220);*/};inp.click();});
+document.getElementById("insimg").addEventListener("click",function(){let inp=document.createElement("input");inp.type="file";inp.onchange=e=>{alert("Switch to Pro to unlock this feature!");};inp.click();});
 
 document.getElementById("itxtbx").addEventListener("mousedown",function(e){movetxt=true;e.stopPropagation();beY=(this.offsetTop-e.clientY);beX=(this.offsetLeft-e.clientX);});
 document.getElementById("itxtbx").addEventListener("mousemove",function(e){e.stopPropagation();if(movetxt==true){document.getElementById("itxtbx").style.top=(e.clientY+beY+"px");document.getElementById("itxtbx").style.left=(e.clientX+beX+"px");}});
@@ -81,110 +80,109 @@ geometrie.forEach(geo=>{geo.addEventListener("click",function(e){e.stopPropagati
 document.getElementById("rf").addEventListener("click",function(e){e.stopPropagation();if(laypg==false){document.getElementById("pgl").style="display:block;";document.getElementById("rf").style="margin-left:22%;";document.getElementById("rf").innerText="<<";laypg=true;}else{document.getElementById("rf").innerText=">>";laypg=false;document.getElementById("rf").style="margin-left:0%;";document.getElementById("pgl").style="display:none;";}});
 lines();
 var rRTL=0;
-function lines(){if(rRTL==1){cv.removeEventListener('mousedown', rectMouseDown);cv.removeEventListener('mouseup', rectMouseUp);cv.removeEventListener('mousemove', rectMouseMove);cv.removeEventListener('mouseout', rectMouseout);};var mouse={x:0,y:0};
+function lines(){if(rRTL==1){cv.removeEventListener('mousedown', rectMouseDown);cv.removeEventListener('touchstart', rectMouseDown);cv.removeEventListener('mouseup', rectMouseUp);cv.removeEventListener('touchend', rectMouseUp);cv.removeEventListener('mousemove', rectMouseMove);cv.removeEventListener('touchmove', rectMouseMove);cv.removeEventListener('mouseout', rectMouseout);cv.removeEventListener('touchcancel', rectMouseout);};var mouse={x:0,y:0};
 paint=function(){ctx.lineTo(mouse.x,mouse.y);ctx.lineWidth=lWR();ctx.lineJoin='round';ctx.lineCap='round';ctx.strokeStyle=clrs;ctx.stroke();};
 	lmM = function(e){
-		mouse.x = e.pageX - this.offsetLeft;
-		mouse.y = e.pageY - this.offsetTop;
+		if(e.pageX!=0){mouse.x = e.pageX - this.offsetLeft;}else{mouse.x = e.touches[0].pageX - this.offsetLeft;};
+		if(e.pageY!=0){mouse.y = e.pageY - this.offsetTop;}else{mouse.y = e.touches[0].pageY - this.offsetTop;};
 	};
 	lmD = function(){
 		ctx.beginPath();
 		ctx.moveTo(mouse.x, mouse.y);
 		cv.addEventListener('mousemove', paint, false);
+		cv.addEventListener('touchmove', paint, false);
 	};
 	lmU = function(){
 		cv.removeEventListener('mousemove', paint, false);
+		cv.removeEventListener('touchmove', paint, false);
 	};
 	lmO = function() {
 		cv.removeEventListener('mousemove', paint, false);
+		cv.removeEventListener('touchmove', paint, false);
 	};
 	cv.addEventListener('mousedown', lmD, false);
+	cv.addEventListener('touchstart', lmD, false);
 	cv.addEventListener('mousemove', lmM, false);
+	cv.addEventListener('touchmove', lmM, false);
 	cv.addEventListener('mouseup', lmU, false);
+	cv.addEventListener('touchend', lmU, false);
 	cv.addEventListener('mouseout', lmO, false);
+	cv.addEventListener('touchcancel', lmO, false);
 
 };
 function lWR(){if(document.getElementById("trt")!=null){if(evSel==false && gumSel==false){whL=document.getElementById("trt").value;lwhL=whL;}}return whL;};
 
-//Clear canvas
 function del() {
 	ctx.clearRect(0, 0, cv.width, cv.height);
 };
 document.getElementById("cls").addEventListener("click",del);
-/*
-//Save image
-var button = document.getElementById('dwnld');
-button.addEventListener('click', function (e) {
-var dataURL = cv.toDataURL('image/png');
-button.href = dataURL;
-});*/
 
-//Rectangle shape
 function rectangle() {
 	rRTL = 1;
 
 	cv.removeEventListener('mousedown', lmD, false);
+	cv.removeEventListener('touchstart', lmD, false);
 	cv.removeEventListener('mousemove', lmM, false);
+	cv.removeEventListener('touchmove', lmM, false);
 	cv.removeEventListener('mouseup', lmU, false);
+	cv.removeEventListener('touchend', lmU, false);
 	cv.removeEventListener('mouseout', lmO, false);
-	
-	//Initialize mouse coordinates to 0,0
+	cv.removeEventListener('touchcancel', lmO, false);
 	var mouse = {x: 0, y: 0};
 
-	//Draw rectangle
 	draw = function() {
 		ctx.fillStyle = "black";
 		ctx.fillStyle = clrs;
 		ctx.fillRect(mouse.x, mouse.y, mouse.w, mouse.h);
 	};
 
-	//Find mouse coordinates relative to canvas
 	rectMouseMove = function(e) {
-	    mouse.w = (e.pageX - this.offsetLeft) - mouse.x;
-	    mouse.h = (e.pageY - this.offsetTop) - mouse.y ;
+		if(e.pageX!=0){mouse.w = (e.pageX - this.offsetLeft) - mouse.x;}else{mouse.w = (e.touches[0].pageX - this.offsetLeft) - mouse.x;};
+	    if(e.pageY!=0){mouse.h = (e.pageY - this.offsetTop) - mouse.y;}else{mouse.h = (e.touches[0].pageY - this.offsetTop) - mouse.y;};
 	};
-
-	//User clicks down on canvas to trigger draw
 	rectMouseDown = function(e) {
 		ctx.beginPath();
-		mouse.x = e.pageX - this.offsetLeft;
-		mouse.y = e.pageY - this.offsetTop;
-		cv.addEventListener('mousemove', draw, false);		  
+		if(e.pageX!=0){mouse.x = e.pageX - this.offsetLeft;}else{mouse.x = e.touches[0].pageX - this.offsetLeft;};
+		if(e.pageY!=0){mouse.y = e.pageY - this.offsetTop;}else{mouse.y = e.touches[0].pageY - this.offsetTop;};
+		cv.addEventListener('mousemove', draw, false);
+		cv.addEventListener('touchmove', draw, false);	 
 	};
 
-	//When mouse lifts up, line stops drawing
 	rectMouseUp = function() {
 		cv.removeEventListener('mousemove', draw, false);
+		cv.removeEventListener('touchmove', draw, false);
 	};
 
-	//When mouse leaves canvas, line stops drawing
 	rectMouseout = function() {
 		cv.removeEventListener('mousemove', draw, false);
+		cv.removeEventListener('touchmove', draw, false);
 	};
 
-	//Event listeners that will trigger the draw functions when
-	//mousedown, mousemove, mouseup, mouseout
 	cv.addEventListener('mousedown', rectMouseDown, false);
+	cv.addEventListener('touchstart', rectMouseDown, false);
 	cv.addEventListener('mouseup', rectMouseUp, false);
+	cv.addEventListener('touchend', rectMouseUp, false);
 	cv.addEventListener('mousemove', rectMouseMove, false);
+	cv.addEventListener('touchmove', rectMouseMove, false);
 	cv.addEventListener('mouseout', rectMouseout, false);
+	cv.addEventListener('touchcancel', rectMouseout, false);
 };
 
-//Triangle shape
 function triangle() {
 	rRTL = 1;
 
 	cv.removeEventListener('mousedown', lmD, false);
+	cv.removeEventListener('touchstart', lmD, false);
 	cv.removeEventListener('mousemove', lmM, false);
+	cv.removeEventListener('touchmove', lmM, false);
 	cv.removeEventListener('mouseup', lmU, false);
+	cv.removeEventListener('touchend', lmU, false);
 	cv.removeEventListener('mouseout', lmO, false);
+	cv.removeEventListener('touchcancel', lmO, false);
 	
-	//Initialize mouse coordinates to 0,0
 	var mouse = {x: 0, y: 0};
 
-	//Draw triangle
 	draw = function() {
-		//Top of triangle
 		ctx.moveTo(mouse.x,mouse.y);
 		ctx.lineTo(mouse.y, mouse.x);
 		ctx.lineTo(mouse.x, mouse.x);
@@ -199,40 +197,38 @@ function triangle() {
 
 	};
 
-	//Find mouse coordinates relative to canvas
 	rectMouseMove = function(e) {
-	    mouse.w = (e.pageX - this.offsetLeft) - mouse.x;
-	    mouse.h = (e.pageY - this.offsetTop) - mouse.y ;
+	    if(e.pageX!=0){mouse.w = (e.pageX - this.offsetLeft) - mouse.x;}else{mouse.w = (e.touches[0].pageX - this.offsetLeft) - mouse.x;};
+	    if(e.pageY!=0){mouse.h = (e.pageY - this.offsetTop) - mouse.y;}else{mouse.h = (e.touches[0].pageY - this.offsetTop) - mouse.y;};
 	};
 
-	//User clicks down on canvas to trigger draw
 	rectMouseDown = function(e) {
 		ctx.beginPath();
-		mouse.x = e.pageX - this.offsetLeft;
-		mouse.y = e.pageY - this.offsetTop;
-		cv.addEventListener('mousemove', draw, false);		  
+		if(e.pageX!=0){mouse.x = e.pageX - this.offsetLeft;}else{mouse.x = e.touches[0].pageX - this.offsetLeft;};
+		if(e.pageY!=0){mouse.y = e.pageY - this.offsetTop;}else{mouse.y = e.touches[0].pageY - this.offsetTop;};
+		cv.addEventListener('mousemove', draw, false);
+		cv.addEventListener('touchmove',draw,false);	  
 	};
-
-	//When mouse lifts up, line stops drawing
 	rectMouseUp = function() {
 		cv.removeEventListener('mousemove', draw, false);
+		cv.removeEventListener('touchmove',draw,false);
 	};
 
-	//When mouse leaves canvas, line stops drawing
 	rectMouseout = function() {
 		cv.removeEventListener('mousemove', draw, false);
+		cv.removeEventListener('touchmove',draw,false);
 	};
 
-	//Event listeners that will trigger the draw functions when
-	//mousedown, mousemove, mouseup, mouseout
 	cv.addEventListener('mousedown', rectMouseDown, false);
+	cv.addEventListener('touchstart', rectMouseDown, false);
 	cv.addEventListener('mouseup', rectMouseUp, false);
+	cv.addEventListener('touchend', rectMouseUp, false);
 	cv.addEventListener('mousemove', rectMouseMove, false);
+	cv.addEventListener('touchmove',rectMouseMove,false);
 	cv.addEventListener('mouseout', rectMouseout, false);
+	cv.addEventListener('touchcancel', rectMouseout, false);
 };
 
-
-//COLORPICKER CODE
 (function(){function CPF(config){this.config=config;this.el=document.getElementById(this.config.id);this.colorPicker=this.config.colorPicker;this.colorDisplay=new ColorDisplay(null);this.colorDisplay.setRGB(ro,gr,bl);this.attachEventListeners();}CPF.prototype.attachEventListeners=function(){var self=this;this.colorPicker.canvas.addEventListener(CanvasColorPicker.COLOR_PICKED, function(e){var detail=e.detail,rgb=detail.rgb,r=rgb[0], g=rgb[1], b=rgb[2];self.colorDisplay.setRGB(r,g,b);}, false);};window.CPF=CPF;function ColorDisplay(el){this.el=el;}ColorDisplay.prototype.setRGB=function(r, g, b){clrs=rgbToHex(r, g, b);document.getElementById("ts").style.backgroundColor=clrs;};function toHex(c){var hex=c.toString(16);return hex.length == 1 ? "0" + hex : hex;}function rgbToHex(r, g, b) {return "#"+toHex(r)+toHex(g)+toHex(b);}function hexToRgb(hex){var n=parseInt(hex,16);var r=(n>>16) & 255;var g=(n>>8)&255;var b=n&255;return [r,g,b];}
 })();
 var colorPicker = new CanvasColorPicker({id: "colorpicker",size: 120});var cp=new CPF({id: "cp",colorPicker: colorPicker});
