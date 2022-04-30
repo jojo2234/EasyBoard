@@ -83,8 +83,8 @@ var rRTL=0;
 function lines(){if(rRTL==1){cv.removeEventListener('mousedown', rectMouseDown);cv.removeEventListener('touchstart', rectMouseDown);cv.removeEventListener('mouseup', rectMouseUp);cv.removeEventListener('touchend', rectMouseUp);cv.removeEventListener('mousemove', rectMouseMove);cv.removeEventListener('touchmove', rectMouseMove);cv.removeEventListener('mouseout', rectMouseout);cv.removeEventListener('touchcancel', rectMouseout);};var mouse={x:0,y:0};
 paint=function(){ctx.lineTo(mouse.x,mouse.y);ctx.lineWidth=lWR();ctx.lineJoin='round';ctx.lineCap='round';ctx.strokeStyle=clrs;ctx.stroke();};
 	lmM = function(e){
-		if(e.pageX!=0){mouse.x = e.pageX - this.offsetLeft;}else{mouse.x = e.touches[0].pageX - this.offsetLeft;};
-		if(e.pageY!=0){mouse.y = e.pageY - this.offsetTop;}else{mouse.y = e.touches[0].pageY - this.offsetTop;};
+		if(e.pageX!=undefined){mouse.x = e.pageX - this.offsetLeft;}else{mouse.x = e.touches[0].pageX - this.offsetLeft;};
+		if(e.pageY!=undefined){mouse.y = e.pageY - this.offsetTop;}else{mouse.y = e.touches[0].pageY - this.offsetTop;};
 	};
 	lmD = function(){
 		ctx.beginPath();
@@ -137,13 +137,13 @@ function rectangle() {
 	};
 
 	rectMouseMove = function(e) {
-		if(e.pageX!=0){mouse.w = (e.pageX - this.offsetLeft) - mouse.x;}else{mouse.w = (e.touches[0].pageX - this.offsetLeft) - mouse.x;};
-	    if(e.pageY!=0){mouse.h = (e.pageY - this.offsetTop) - mouse.y;}else{mouse.h = (e.touches[0].pageY - this.offsetTop) - mouse.y;};
+		if(e.pageX!=undefined){mouse.w = (e.pageX - this.offsetLeft) - mouse.x;}else{mouse.w = (e.touches[0].pageX - this.offsetLeft) - mouse.x;};
+	    if(e.pageY!=undefined){mouse.h = (e.pageY - this.offsetTop) - mouse.y;}else{mouse.h = (e.touches[0].pageY - this.offsetTop) - mouse.y;};
 	};
 	rectMouseDown = function(e) {
 		ctx.beginPath();
-		if(e.pageX!=0){mouse.x = e.pageX - this.offsetLeft;}else{mouse.x = e.touches[0].pageX - this.offsetLeft;};
-		if(e.pageY!=0){mouse.y = e.pageY - this.offsetTop;}else{mouse.y = e.touches[0].pageY - this.offsetTop;};
+		if(e.pageX!=undefined){mouse.x = e.pageX - this.offsetLeft;}else{mouse.x = e.touches[0].pageX - this.offsetLeft;};
+		if(e.pageY!=undefined){mouse.y = e.pageY - this.offsetTop;}else{mouse.y = e.touches[0].pageY - this.offsetTop;};
 		cv.addEventListener('mousemove', draw, false);
 		cv.addEventListener('touchmove', draw, false);	 
 	};
@@ -198,14 +198,14 @@ function triangle() {
 	};
 
 	rectMouseMove = function(e) {
-	    if(e.pageX!=0){mouse.w = (e.pageX - this.offsetLeft) - mouse.x;}else{mouse.w = (e.touches[0].pageX - this.offsetLeft) - mouse.x;};
-	    if(e.pageY!=0){mouse.h = (e.pageY - this.offsetTop) - mouse.y;}else{mouse.h = (e.touches[0].pageY - this.offsetTop) - mouse.y;};
+	    if(e.pageX!=undefined){mouse.w = (e.pageX - this.offsetLeft) - mouse.x;}else{mouse.w = (e.touches[0].pageX - this.offsetLeft) - mouse.x;};
+	    if(e.pageY!=undefined){mouse.h = (e.pageY - this.offsetTop) - mouse.y;}else{mouse.h = (e.touches[0].pageY - this.offsetTop) - mouse.y;};
 	};
 
 	rectMouseDown = function(e) {
 		ctx.beginPath();
-		if(e.pageX!=0){mouse.x = e.pageX - this.offsetLeft;}else{mouse.x = e.touches[0].pageX - this.offsetLeft;};
-		if(e.pageY!=0){mouse.y = e.pageY - this.offsetTop;}else{mouse.y = e.touches[0].pageY - this.offsetTop;};
+		if(e.pageX!=undefined){mouse.x = e.pageX - this.offsetLeft;}else{mouse.x = e.touches[0].pageX - this.offsetLeft;};
+		if(e.pageY!=undefined){mouse.y = e.pageY - this.offsetTop;}else{mouse.y = e.touches[0].pageY - this.offsetTop;};
 		cv.addEventListener('mousemove', draw, false);
 		cv.addEventListener('touchmove',draw,false);	  
 	};
