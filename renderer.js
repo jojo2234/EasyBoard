@@ -24,7 +24,11 @@ var gumW=-(parseInt(smyel.width)/4);
 var testClr="#111";
 var grascorsot="unset";
 var setCr=function(e){document.getElementById("Mcr").style.top=((e.pageY-gumH)+"px");document.getElementById("Mcr").style.left=((e.pageX-gumW)+"px");};
-window.addEventListener("resize",function(ev){let img=new Image;let src=cv.toDataURL();ev.stopPropagation();img.src=src;cv.width=window.innerWidth;cv.height=window.innerHeight;let nctx=cv.getContext("2d");nctx.drawImage(img,0,0,cv.width,cv.height);});
+
+//Adaptive eraser work in progress
+//FOUND BUG On resize, content is erased canvas should have a fixed size?
+/*window.addEventListener("resize",function(ev){let img=new Image;let src=cv.toDataURL();ev.stopPropagation();img.src=src;cv.width=window.innerWidth;cv.height=window.innerHeight;let nctx=cv.getContext("2d");nctx.drawImage(img,0,0,cv.width,cv.height);});*/
+
 function remEv(){if(evSel==true){evSel=false;document.getElementById("cv").style.cursor="default";}}
 function remGum(){if(gumSel==true){document.removeEventListener("mousemove",setCr);document.getElementById("Mcr").style.display="none";gumSel=false;ctx.globalCompositeOperation='source-over';whL=lwhL;document.getElementById("trt").value=whL;}}
 function ho(em){const ocl=event=>{if(!em.contains(event.target) && isV(em)){em.style.display="none";rcl();}};const rcl=()=>{clkd=false;if(em==document.getElementById("geom")){formeGeo=false;}if(document.getElementById("ap").style.display=="block"){document.getElementById("colorpicker").style.position="fixed";}if(em==document.getElementById("sfd")){csiOp=false;}};document.addEventListener("click",ocl);};const isV=em=>!!em && !!(em.offsetWidth || em.offsetHeight);
