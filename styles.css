@@ -2,7 +2,7 @@
 body{overflow:hidden;margin:0px;padding:0px;}#Mcr{display:none;position:absolute;width:44px;height:44px;margin:-32px 0 0 -32px;border:1px solid #333;border-radius:50%;pointer-events:none;}
 #csi{width:4%;position:absolute;right:1.1%;top:14%;cursor:pointer;box-shadow: 1px 1px 8px 1px #33333363;border-radius:15px;min-width:44px;}#tc{position:absolute;bottom:8px;margin-left:calc(50% - 273px);}
 #tc img{cursor:pointer;position:relative;width:62px;margin-right:8px;margin-left:8px;}#rf{position:absolute;top:calc(50% - 62px);padding:8px;padding-top:4px;padding-bottom:4px;color:#333;font-weight:bold;cursor:pointer;background-color:#c0bfbf;border-radius:8px;}
-#ap{min-width:60px;background-color:#fff;min-height:140px;margin-bottom:26px;box-shadow:1px 1px 8px 1px #33333363;border-radius:15px;width:50%;display:none;}
+#ap{min-width:60px;background-color:#fff;min-height:140px;margin-bottom:26px;box-shadow:1px 1px 8px 1px #33333363;border-radius:15px;width:100%;display:none;}
 #trt{
     -webkit-transform:rotate(-90deg);
     -moz-transform: rotate(-90deg);
@@ -14,7 +14,7 @@ body{overflow:hidden;margin:0px;padding:0px;}#Mcr{display:none;position:absolute
 #colorpicker {
     display:inline-block;
     cursor:default;
-    margin-left:30px;
+    margin-left:20px;
     z-index: 2;
     position:fixed;
     bottom:115px;
@@ -42,3 +42,5 @@ body{overflow:hidden;margin:0px;padding:0px;}#Mcr{display:none;position:absolute
 #sotto span{padding-left:2px;padding-right:2px;cursor:default;}
 #slnfnt{max-width:120px;width:120px;margin-left:3px;}#fntdec{display:inline;}#fntdec span:hover{background-color:#d3d3d3;}
 #txbxclr{display:none;padding:4px;min-width:120px;max-width:120px;min-height:80px;position:absolute;right:20px;margin-top:2px;background-color:#fbfbfbd6;border:1px solid gray;}#txbxclr span{display:inline-block;border:1px solid gray;background-color:#000;min-width:11px;min-height:11px;margin:2px;}
+#alterncl{top:10px;min-width:200px;max-width:220px;min-height:80px;position:absolute;right:8px;margin-top:6px;}
+#alterncl span{display:inline-block;border:1px solid gray;background-color:#000;min-width:18px;min-height:18px;margin:2px;margin-right:3px;margin-left:3px;cursor:pointer;}
