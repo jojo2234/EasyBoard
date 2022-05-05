@@ -24,12 +24,13 @@ var gumW=-(parseInt(smyel.width)/4);
 var testClr="#111111";
 var grascorsot="unset";
 var setCr=function(e){document.getElementById("Mcr").style.top=((e.pageY-gumH)+"px");document.getElementById("Mcr").style.left=((e.pageX-gumW)+"px");};
-
+var winresizeX=0;
+var winresizeY=0;
 //Adaptive eraser work in progress
 //FOUND BUG On resize, content is erased canvas should have a fixed size?
 /*window.addEventListener("resize",function(ev){let img=new Image;let src=cv.toDataURL();ev.stopPropagation();img.src=src;cv.width=window.innerWidth;cv.height=window.innerHeight;let nctx=cv.getContext("2d");nctx.drawImage(img,0,0,cv.width,cv.height);});*/
-
-function remEv(){if(evSel==true){evSel=false;document.getElementById("cv").style.cursor="default";}}
+window.addEventListener("resize",function(){cv.width=window.innerWidth;cv.height=window.innerHeight;/*if(window.innerWidth<cv.width){winresizeX=(cv.width-window.innerWidth)/2;}else{winresizeX=-(window.innerWidth-cv.width)/2;}if(window.innerHeight<cv.height){winresizeY=(cv.height-window.innerHeight)/2;}else{winresizeY=-(window.innerHeight-cv.height)/2;}*/});
+function remEv(){if(evSel==true){evSel=false;document.getElementById("cv").style.cursor="crosshair";}}
 function remGum(){if(gumSel==true){document.removeEventListener("mousemove",setCr);document.getElementById("Mcr").style.display="none";gumSel=false;ctx.globalCompositeOperation='source-over';whL=lwhL;document.getElementById("trt").value=whL;}}
 function ho(em){const ocl=event=>{if(!em.contains(event.target) && isV(em)){em.style.display="none";rcl();}};const rcl=()=>{clkd=false;if(em==document.getElementById("geom")){formeGeo=false;}if(document.getElementById("ap").style.display=="block"){document.getElementById("colorpicker").style.position="fixed";}if(em==document.getElementById("sfd")){csiOp=false;}};document.addEventListener("click",ocl);};const isV=em=>!!em && !!(em.offsetWidth || em.offsetHeight);
 function w(e){remGum();remEv();if(clkd==true){clkd=false;document.getElementById("ap").style.display="none";}else{clkd=true;let vd=document.getElementById("ap");vd.style.display="block";if(document.getElementById("geom").style.display=="block"){document.getElementById("colorpicker").style.position="static";}e.stopPropagation();evSel=false;document.getElementById("trt").addEventListener("input",function(e){this.value=this.value});
@@ -89,8 +90,8 @@ var rRTL=0;
 function lines(){if(rRTL==1){cv.removeEventListener('mousedown', rectMouseDown);cv.removeEventListener('touchstart', rectMouseDown);cv.removeEventListener('mouseup', rectMouseUp);cv.removeEventListener('touchend', rectMouseUp);cv.removeEventListener('mousemove', rectMouseMove);cv.removeEventListener('touchmove', rectMouseMove);cv.removeEventListener('mouseout', rectMouseout);cv.removeEventListener('touchcancel', rectMouseout);};var mouse={x:0,y:0};
 paint=function(){ctx.lineTo(mouse.x,mouse.y);ctx.lineWidth=lWR();ctx.lineJoin='round';ctx.lineCap='round';ctx.strokeStyle=clrs;ctx.stroke();};
 	lmM = function(e){
-		if(e.pageX!=undefined){mouse.x = e.pageX - this.offsetLeft;}else{mouse.x = e.touches[0].pageX - this.offsetLeft;};
-		if(e.pageY!=undefined){mouse.y = e.pageY - this.offsetTop;}else{mouse.y = e.touches[0].pageY - this.offsetTop;};
+		if(e.pageX!=undefined){mouse.x = (e.pageX - this.offsetLeft)+winresizeX;}else{mouse.x = (e.touches[0].pageX - this.offsetLeft)+winresizeX;};
+		if(e.pageY!=undefined){mouse.y = (e.pageY - this.offsetTop)+winresizeY;}else{mouse.y = (e.touches[0].pageY - this.offsetTop)+winresizeY;};
 	};
 	lmD = function(){
 		ctx.beginPath();
@@ -148,8 +149,8 @@ function rectangle() {
 	};
 	rectMouseDown = function(e) {
 		ctx.beginPath();
-		if(e.pageX!=undefined){mouse.x = e.pageX - this.offsetLeft;}else{mouse.x = e.touches[0].pageX - this.offsetLeft;};
-		if(e.pageY!=undefined){mouse.y = e.pageY - this.offsetTop;}else{mouse.y = e.touches[0].pageY - this.offsetTop;};
+		if(e.pageX!=undefined){mouse.x = (e.pageX - this.offsetLeft)+winresizeX;}else{mouse.x = (e.touches[0].pageX - this.offsetLeft)+winresizeX;};
+		if(e.pageY!=undefined){mouse.y = (e.pageY - this.offsetTop)+winresizeY;}else{mouse.y = (e.touches[0].pageY - this.offsetTop)+winresizeY;};
 		cv.addEventListener('mousemove', draw, false);
 		cv.addEventListener('touchmove', draw, false);	 
 	};
@@ -210,8 +211,8 @@ function triangle() {
 
 	rectMouseDown = function(e) {
 		ctx.beginPath();
-		if(e.pageX!=undefined){mouse.x = e.pageX - this.offsetLeft;}else{mouse.x = e.touches[0].pageX - this.offsetLeft;};
-		if(e.pageY!=undefined){mouse.y = e.pageY - this.offsetTop;}else{mouse.y = e.touches[0].pageY - this.offsetTop;};
+		if(e.pageX!=undefined){mouse.x = (e.pageX - this.offsetLeft)+winresizeX;}else{mouse.x = (e.touches[0].pageX - this.offsetLeft)+winresizeX;};
+		if(e.pageY!=undefined){mouse.y = (e.pageY - this.offsetTop)+winresizeY;}else{mouse.y = (e.touches[0].pageY - this.offsetTop)+winresizeY;};
 		cv.addEventListener('mousemove', draw, false);
 		cv.addEventListener('touchmove',draw,false);	  
 	};
