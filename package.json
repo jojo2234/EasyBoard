@@ -14,7 +14,7 @@
     "OpenBoard",
     "Alternative"
   ],
-  "author": "LoYarpi",
+  "author": "jojo2234",
   "license": "BSD-3",
   "devDependencies": {
     "electron": "^18.0.3"
