@@ -23,15 +23,22 @@ var gumH=-(parseInt(smyel.height)/4);
 var gumW=-(parseInt(smyel.width)/4);
 var testClr="#111111";
 var grascorsot="unset";
-var setCr=function(e){document.getElementById("Mcr").style.top=((e.pageY-gumH)+"px");document.getElementById("Mcr").style.left=((e.pageX-gumW)+"px");};
+var setCr=function(e){document.getElementById("Mcr").style.top=((e.pageY-gumH)+"px");document.getElementById("Mcr").style.left=((e.pageX-gumW)+"px");e.stopPropagation();};
 var winresizeX=0;
 var winresizeY=0;
 //Adaptive eraser work in progress
+var tip = null;
+var ulMouX=null;
+var ulMouY=null;
+var piugrosso=false;
+function gommaAdattiva(e){if(gumSel==true){if(tip===null){tip=Date.now();ulMouX=e.screenX;ulMouY=e.screenY;return;}let now=Date.now();let dt=now-tip;let dx=e.screenX-ulMouX;let dy=e.screenY-ulMouY;let speX=Math.round(dx/dt*100);let speY=Math.round(dy/dt*100);tip=now;ulMouX=e.screenX;ulMouY=e.screenY;if((speX>260 || speX<-260) && (speY>260 || speY<-260)){if(piugrosso==false){document.getElementById("Mcr").style.width="62px";document.getElementById("Mcr").style.height="62px";document.getElementById("Mcr").style.margin="-41px 0 0 -41px";whL=62;}}if((speX>700 || speX<-700) && (speY>700 || speY<-700)){document.getElementById("Mcr").style.width="82px";document.getElementById("Mcr").style.height="82px";document.getElementById("Mcr").style.margin="-51px 0 0 -51px";whL=82;piugrosso=true;}}}
+document.getElementById("cv").addEventListener("mousemove", function(e){gommaAdattiva(e);});
+document.getElementById("cv").addEventListener("touchmove", function(e){gommaAdattiva(e);});
 //FOUND BUG On resize, content is erased canvas should have a fixed size?
 /*window.addEventListener("resize",function(ev){let img=new Image;let src=cv.toDataURL();ev.stopPropagation();img.src=src;cv.width=window.innerWidth;cv.height=window.innerHeight;let nctx=cv.getContext("2d");nctx.drawImage(img,0,0,cv.width,cv.height);});*/
 window.addEventListener("resize",function(){cv.width=window.innerWidth;cv.height=window.innerHeight;/*if(window.innerWidth<cv.width){winresizeX=(cv.width-window.innerWidth)/2;}else{winresizeX=-(window.innerWidth-cv.width)/2;}if(window.innerHeight<cv.height){winresizeY=(cv.height-window.innerHeight)/2;}else{winresizeY=-(window.innerHeight-cv.height)/2;}*/});
 function remEv(){if(evSel==true){evSel=false;document.getElementById("cv").style.cursor="crosshair";}}
-function remGum(){if(gumSel==true){document.removeEventListener("mousemove",setCr);document.getElementById("Mcr").style.display="none";gumSel=false;ctx.globalCompositeOperation='source-over';whL=lwhL;document.getElementById("trt").value=whL;}}
+function remGum(){if(gumSel==true){document.getElementById("Mcr").style.width="44px";document.getElementById("Mcr").style.height="44px";document.getElementById("Mcr").style.margin="-32px 0 0 -32px";document.removeEventListener("mousemove",setCr);document.getElementById("Mcr").style.display="none";gumSel=false;ctx.globalCompositeOperation='source-over';whL=lwhL;document.getElementById("trt").value=whL;}}
 function ho(em){const ocl=event=>{if(!em.contains(event.target) && isV(em)){em.style.display="none";rcl();}};const rcl=()=>{clkd=false;if(em==document.getElementById("geom")){formeGeo=false;}if(document.getElementById("ap").style.display=="block"){document.getElementById("colorpicker").style.position="fixed";}if(em==document.getElementById("sfd")){csiOp=false;}};document.addEventListener("click",ocl);};const isV=em=>!!em && !!(em.offsetWidth || em.offsetHeight);
 function w(e){remGum();remEv();if(clkd==true){clkd=false;document.getElementById("ap").style.display="none";}else{clkd=true;let vd=document.getElementById("ap");vd.style.display="block";if(document.getElementById("geom").style.display=="block"){document.getElementById("colorpicker").style.position="static";}e.stopPropagation();evSel=false;document.getElementById("trt").addEventListener("input",function(e){this.value=this.value});
 document.getElementById("trt").addEventListener("click",lWR);whL=lwhL;document.getElementById("trt").value=whL;(function(){colorPicker.draw();})();}}
@@ -61,7 +68,7 @@ var incvspn=document.getElementById("alterncl").childNodes;
 incvspn.forEach(sp=>{sp.addEventListener("click",function(e){e.stopPropagation();clrs=this.style.backgroundColor;document.getElementById("ts").style.backgroundColor=clrs;});});
 document.getElementById("txtbox").addEventListener("click",function(){if(txtSel==true){document.getElementById("itxtbx").style.display="none";txtSel=false;}else{txtSel=true;document.getElementById("itxtbx").style.display="block";}});
 document.getElementById("ev").addEventListener("click",function(evi){remGum();clrs="#fffb000a";whL=20;evi.stopPropagation();evSel=true;document.getElementById("cv").style.cursor="cell";});
-document.getElementById("rub").addEventListener("click",function(re){if(gumSel==true){document.removeEventListener("mousemove",setCr);document.getElementById("Mcr").style.display="none";gumSel=false;wHL=lwhL;clrs="#111111";ctx.globalCompositeOperation='source-over';}else{gumSel=true;clrs="#111111";remEv();document.getElementById("Mcr").style.display="block";document.addEventListener("mousemove",setCr);ctx.globalCompositeOperation='destination-out';}whL=44;re.stopPropagation();});
+document.getElementById("rub").addEventListener("click",function(re){if(gumSel==true){document.removeEventListener("mousemove",setCr);document.removeEventListener("touchmove",setCr);document.getElementById("Mcr").style.display="none";gumSel=false;wHL=lwhL;clrs="#111111";ctx.globalCompositeOperation='source-over';}else{gumSel=true;clrs="#111111";remEv();document.getElementById("Mcr").style.display="block";document.addEventListener("mousemove",setCr);document.addEventListener("touchmove",setCr);ctx.globalCompositeOperation='destination-out';}whL=44;re.stopPropagation();});
 var movetxt=false;
 var beY=0;
 var beX=0;
