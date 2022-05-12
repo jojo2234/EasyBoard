@@ -6,7 +6,7 @@ This is a minimal whiteboard app created with ElectronJS. It has been created to
 
 <p align="center">
 <img alt="Easyboard in action" src="i/home1.png" width="520" height="295">
-<p align="center"><i>Everithing is written in easyboard<i></p>
+<p align="center"><i>Everithing is written in easyboard</i></p>
 </p>
 
 ## Available functions
@@ -29,13 +29,31 @@ This is a minimal whiteboard app created with ElectronJS. It has been created to
 
 ### Free version
 - Insert Images
-- Adaptive eraser when user move fast the cursor the eraser grow
+- Adaptive eraser when user move fast the cursor the eraser grow (DONE)
 
 ### Payment version
 
 - Math Spirals
 - Math Symbols
 
+  ## Build instructions
+
+### Install NodeJS
+From nodejs official website you can download the LTS version <a href="https://nodejs.org/en/">https://nodejs.org/en/</a>
+
+### Install electron
+From terminal (CMD on Windows) give: `npm i -D electron@latest`
+
+### Build
+Inside the git downloaded folder give (1 at time):
+```
+npm install --save-dev @electron-forge/cli
+
+npx electron-forge import
+
+npm run make
+```
+You will find the binary in the out folder. You can use a software like <a href="http://angusj.com/resourcehacker/">ResourceHacker</a> to change the icon.
 
 ## License
 
