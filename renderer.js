@@ -102,6 +102,7 @@ paint=function(){ctx.lineTo(mouse.x,mouse.y);ctx.lineWidth=lWR();ctx.lineJoin='r
 	};
 	lmD = function(){
 		ctx.beginPath();
+		paint();
 		ctx.moveTo(mouse.x, mouse.y);
 		cv.addEventListener('mousemove', paint, false);
 		cv.addEventListener('touchmove', paint, false);
