@@ -82,10 +82,10 @@ document.getElementById("itxtbx").addEventListener("mousemove",function(e){e.sto
 let vray=document.getElementById("insfd").childNodes;
 document.getElementById("ccb").addEventListener("click",function(e){csiOp=false;document.getElementById("sfd").style.display="none";Rcss();e.stopPropagation();});
 vray.forEach(ele => {
-	ele.addEventListener("click",function(){this.style="border:4px solid #00b761;border-radius:4px;";document.getElementById("cv").style.backgroundImage="url("+this.src+")";let lray=document.getElementById("insfd").childNodes;lray.forEach(elm => {if(elm!=this){elm.style="none";}});});
+	ele.addEventListener("click",function(){this.style="border:4px solid #00b761;border-radius:4px;";let bkg="url("+this.src+")";document.getElementById("cv").style.backgroundImage=bkg;localStorage.setItem("bkg",bkg);let lray=document.getElementById("insfd").childNodes;lray.forEach(elm => {if(elm!=this){elm.style="none";}});});
 });
 let bray=document.getElementById("clbk").childNodes;
-bray.forEach(cbk => {cbk.addEventListener("click",function(){let acbc=this.style.backgroundImage;document.getElementById("cv").style.backgroundImage=acbc;this.style='border:1px solid #00b761;'+'background-image:'+acbc+';';let cray=document.getElementById("clbk").childNodes;cray.forEach(lm => {if(lm!=this){lm.style.borderColor="gray";}})});});
+bray.forEach(cbk => {cbk.addEventListener("click",function(){let acbc=this.style.backgroundImage;document.getElementById("cv").style.backgroundImage=acbc;localStorage.setItem("bkg",acbc);this.style='border:1px solid #00b761;'+'background-image:'+acbc+';';let cray=document.getElementById("clbk").childNodes;cray.forEach(lm => {if(lm!=this){lm.style.borderColor="gray";}})});});
 
 document.getElementById("csi").addEventListener("click",function(e){if(csiOp==true){csiOp=false;document.getElementById("sfd").style="display:none;";}else{csiOp=true;document.getElementById("sfd").style="display:block;";e.
 stopPropagation();}});
@@ -251,3 +251,4 @@ function toHex(c){var hex=c.toString(16);return hex.length == 1 ? "0" + hex : he
 function rgbToHex(r, g, b) {return "#"+toHex(r)+toHex(g)+toHex(b);}function hexToRgb(hex){var n=parseInt(hex,16);var r=(n>>16) & 255;var g=(n>>8)&255;var b=n&255;return [r,g,b];}
 })();
 var colorPicker = new CanvasColorPicker({id: "colorpicker",size: 120});var cp=new CPF({id: "cp",colorPicker: colorPicker});
+if(localStorage.getItem("bkg")!=null){document.getElementById("cv").style.backgroundImage=localStorage.getItem("bkg");}

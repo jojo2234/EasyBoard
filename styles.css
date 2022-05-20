@@ -13,7 +13,7 @@
 #ccb:hover,#anctx:hover{background-color:#00b761;}
 #anctx{border:2px solid #00b761;border-radius:0px;padding-top:1px;padding-bottom:1px;margin-left:4px;}
 .layer{margin:8px;border:1px solid gray;border-radius:14px;}
-.antcv{border-radius:14px;max-width:300px;margin:8px;}#ersly{min-width:24px;max-width:10%;}
+.antcv{border-radius:14px;max-width:300px;width:96%;margin:8px;}#ersly{min-width:24px;max-width:10%;}
 #ersly{min-width:34px;max-width:16%;min-width:32px;max-width:42px;bottom:1%;position:absolute;margin-left:58%;cursor:pointer;}
 #crtly{min-width:34px;max-width:16%;min-width:34px;max-width:44px;bottom:1%;position:absolute;margin-left:78%;cursor:pointer;}
 #geom{min-width:60px;background-color:#fff;min-height:140px;max-width:470px;margin-bottom:26px;box-shadow:1px 1px 8px 1px #33333363;border-radius:15px;display:none;}
