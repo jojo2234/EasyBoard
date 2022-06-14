@@ -24,7 +24,7 @@ var gumW=-(parseInt(smyel.width)/4);
 var testClr="#111111";
 var rgbcl=[17,17,17];
 var grascorsot="unset";
-var setCr=function(e){document.getElementById("Mcr").style.top=((e.pageY-gumH)+"px");document.getElementById("Mcr").style.left=((e.pageX-gumW)+"px");e.stopPropagation();};
+var setCr=function(e){if(e.pageX==undefined || e.pageY==undefined){document.getElementById("Mcr").style.top=((e.touches[0].pageY-gumH)+"px");document.getElementById("Mcr").style.left=((e.touches[0].pageX-gumW)+"px");e.stopPropagation();}else{document.getElementById("Mcr").style.top=((e.pageY-gumH)+"px");document.getElementById("Mcr").style.left=((e.pageX-gumW)+"px");e.stopPropagation();}};
 var winresizeX=0;
 var winresizeY=0;
 //Adaptive eraser work in progress
@@ -112,7 +112,7 @@ document.getElementById("rf").addEventListener("click",function(e){e.stopPropaga
 lines();
 var rRTL=0;
 function lines(){if(rRTL==1){cv.removeEventListener('mousedown', rectMouseDown);cv.removeEventListener('touchstart', rectMouseDown);cv.removeEventListener('mouseup', rectMouseUp);cv.removeEventListener('touchend', rectMouseUp);cv.removeEventListener('mousemove', rectMouseMove);cv.removeEventListener('touchmove', rectMouseMove);cv.removeEventListener('mouseout', rectMouseout);cv.removeEventListener('touchcancel', rectMouseout);};var mouse={x:0,y:0};
-paint=function(){ctx.lineTo(mouse.x,mouse.y);ctx.lineWidth=lWR();ctx.lineJoin='round';ctx.lineCap='round';ctx.strokeStyle=clrs;ctx.stroke();};
+paint=function(e){if(e.pageX==undefined || e.pageY==undefined){ctx.moveTo(mouse.x, mouse.y);}ctx.lineTo(mouse.x,mouse.y);ctx.lineWidth=lWR();ctx.lineJoin='round';ctx.lineCap='round';ctx.strokeStyle=clrs;ctx.stroke();};
 paintDot=function(){ctx.moveTo(mouse.x, mouse.y);ctx.lineTo(mouse.x+0.1,mouse.y+0.1);ctx.lineWidth=lWR();ctx.lineJoin='round';ctx.lineCap='round';ctx.strokeStyle=clrs;ctx.stroke();};
 	lmM = function(e){
 		if(e.pageX!=undefined){mouse.x = (e.pageX - this.offsetLeft)+winresizeX;}else{mouse.x = (e.touches[0].pageX - this.offsetLeft)+winresizeX;};
